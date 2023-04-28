@@ -1,7 +1,7 @@
 // @ts-check
 
 import { assert, details as X } from '@agoric/assert';
-import { Far } from '@endo/far';
+import { Far } from '@endo/marshal';
 import { E } from '@endo/eventual-send';
 import { AmountMath } from '@agoric/ertp';
 import { makeNotifierKit } from '@agoric/notifier';
@@ -26,6 +26,7 @@ import '@agoric/zoe/exported.js';
  *  completedP: Promise,
  *  sellerSeatP: Promise<UserSeat>
  * }} AuctionSession
+ *
  * @type {ContractStartFn}
  */
 const start = (zcf) => {
@@ -52,8 +53,10 @@ const start = (zcf) => {
 
   const { zcfSeat: sellerSeat } = zcf.makeEmptySeatKit();
 
-  const { notifier: availableItemsNotifier, updater: availableItemsUpdater } =
-    makeNotifierKit();
+  const {
+    notifier: availableItemsNotifier,
+    updater: availableItemsUpdater,
+  } = makeNotifierKit();
 
   const sell = (seat) => {
     sellerSeat.incrementBy(seat.decrementBy(seat.getCurrentAllocation()));
@@ -142,9 +145,7 @@ const start = (zcf) => {
 
     const completedP = deposited.then(async () => {
       // get after match allocation
-      // TODO Stop using getCurrentAllocationJig.
-      // See https://github.com/Agoric/agoric-sdk/issues/5833
-      const sellerAllocation = await E(sellerSeatP).getFinalAllocation();
+      const sellerAllocation = await E(sellerSeatP).getCurrentAllocation();
 
       // check Asset amount after the auction session
       const isAssetItemSold = AmountMath.isEmpty(sellerAllocation.Asset);

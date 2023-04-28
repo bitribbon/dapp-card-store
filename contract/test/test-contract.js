@@ -1,8 +1,7 @@
 // @ts-check
 import '@endo/init/pre-bundle-source.js';
-import '@agoric/zoe/tools/prepare-test-env.js';
-import test from 'ava';
 
+import { test } from '@agoric/zoe/tools/prepare-test-env-ava.js';
 import { resolve as importMetaResolve } from 'import-meta-resolve';
 
 import bundleSource from '@endo/bundle-source';
@@ -16,7 +15,9 @@ import buildManualTimer from '@agoric/zoe/tools/manualTimer.js';
 const contractPath = new URL('../src/contract.js', import.meta.url).pathname;
 
 const setupCardsContract = async () => {
-  const { zoeService: zoe } = makeZoeKit(makeFakeVatAdmin().admin);
+  const { zoeService } = makeZoeKit(makeFakeVatAdmin().admin);
+  const feePurse = E(zoeService).makeFeePurse();
+  const zoe = E(zoeService).bindDefaultFeePurse(feePurse);
 
   // pack the contract
   const bundle = await bundleSource(contractPath);
@@ -67,8 +68,12 @@ test('zoe - sell baseball cards, normal case', async (t) => {
     brand: moolaBrand,
   } = makeIssuerKit('moola');
 
-  const { zoe, installation, auctionInstallation, auctionItemsInstallation } =
-    await setupCardsContract();
+  const {
+    zoe,
+    installation,
+    auctionInstallation,
+    auctionItemsInstallation,
+  } = await setupCardsContract();
 
   const timer = buildManualTimer(console.log);
   const contractTerms = harden({
@@ -201,8 +206,12 @@ test('zoe - after a failed auction session, key should be available for new one'
     brand: moolaBrand,
   } = makeIssuerKit('moola');
 
-  const { zoe, installation, auctionInstallation, auctionItemsInstallation } =
-    await setupCardsContract();
+  const {
+    zoe,
+    installation,
+    auctionInstallation,
+    auctionItemsInstallation,
+  } = await setupCardsContract();
 
   const timer = buildManualTimer(console.log);
   const contractTerms = harden({

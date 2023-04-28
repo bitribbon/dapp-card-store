@@ -1,10 +1,10 @@
-// GENERATED FROM /Users/anil/WebstormProjects/agoric-samples/dapp-card-store/api/deploy.js
+// GENERATED FROM /Users/brendenrichardson/bitribbon-poc/api/deploy.js
 export default {
   "INSTANCE_BOARD_ID": "board05432",
   "INSTALLATION_BOARD_ID": "board01029",
   "AUCTION_ITEMS_INSTALLATION_BOARD_ID": "board00530",
   "INVITE_BRAND_BOARD_ID": "board0371",
-  "BRIDGE_URL": "agoric-lookup:https://wallet.agoric.app/locator/?append=/bridge",
+  "BRIDGE_URL": "agoric-lookup:https://local.agoric.com?append=/bridge",
   "brandBoardIds": {
     "Card": "board02733",
     "Money": "board0425"

@@ -1,5 +1,5 @@
 {
-  "name": "dapp-card-store-contract",
+  "name": "bitribbon-poc-contract",
   "version": "0.1.0",
   "private": true,
   "description": "Contract for the Agoric Dapp",
@@ -15,25 +15,23 @@
   },
   "devDependencies": {
     "agoric": "community-dev",
-    "@endo/eslint-plugin": "^0.4.1",
-    "@jessie.js/eslint-plugin": "^0.2.0",
-    "ava": "^4.3.1",
+    "ava": "^3.13.0",
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1 ",
     "eslint-config-jessie": "^0.0.6",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
     "prettier": "^2.2.1"
   },
   "dependencies": {
     "@agoric/assert": "community-dev",
-    "@endo/far": "0.2.15",
     "@agoric/babel-parser": "^7.6.4",
     "@endo/bundle-source": "^2.0.5",
     "@agoric/ertp": "community-dev",
     "@endo/eventual-send": "^0.14.4",
     "@endo/init": "^0.5.33",
+    "@endo/marshal": "^0.5.4",
     "@agoric/notifier": "community-dev",
     "@agoric/store": "community-dev",
     "@agoric/zoe": "community-dev",
@@ -56,6 +54,11 @@
     "url": "https://github.com/Agoric/agoric/issues"
   },
   "homepage": "https://github.com/Agoric/agoric#readme",
+  "eslintConfig": {
+    "extends": [
+      "@agoric"
+    ]
+  },
   "prettier": {
     "trailingComma": "all",
     "singleQuote": true

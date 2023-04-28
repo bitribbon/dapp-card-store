@@ -19,11 +19,12 @@ const PRICE_PER_CARD_IN_MONEY_UNITS = 1n;
 // script ends, connections to any of its objects are severed.
 
 /**
- * @typedef {object} DeployPowers The special powers that `agoric deploy` gives us
+ * @typedef {Object} DeployPowers The special powers that `agoric deploy` gives us
  * @property {(path: string) => Promise<{ moduleFormat: string, source: string }>} bundleSource
  * @property {(path: string) => string} pathResolve
  * @property {(path: string, opts?: any) => Promise<any>} installUnsafePlugin
- * @typedef {object} Board
+ *
+ * @typedef {Object} Board
  * @property {(id: string) => any} getValue
  * @property {(value: any) => string} getId
  * @property {(value: any) => boolean} has
@@ -162,8 +163,7 @@ export default async function deployApi(homePromise, { pathResolve }) {
     INSTALLATION_BOARD_ID,
     AUCTION_ITEMS_INSTALLATION_BOARD_ID,
     INVITE_BRAND_BOARD_ID,
-    BRIDGE_URL:
-      'agoric-lookup:https://wallet.agoric.app/locator/?append=/bridge',
+    BRIDGE_URL: 'agoric-lookup:https://local.agoric.com?append=/bridge',
     brandBoardIds: {
       Card: CARD_BRAND_BOARD_ID,
       Money: MONEY_BRAND_BOARD_ID,

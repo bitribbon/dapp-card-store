@@ -2,7 +2,7 @@
 import '@agoric/zoe/exported';
 
 import { makeIssuerKit, AssetKind, AmountMath } from '@agoric/ertp';
-import { Far } from '@endo/far';
+import { Far } from '@endo/marshal';
 import { E } from '@endo/eventual-send';
 
 import { FIRST_PRICE } from '@agoric/zoe/src/contracts/auction';
@@ -47,7 +47,7 @@ const start = (zcf) => {
     });
 
     const auctionItemsTerms = harden({
-      bidDuration: 300n,
+      bidDuration: 10n,
       winnerPriceOption: FIRST_PRICE,
       ...zcf.getTerms(),
       auctionInstallation,
