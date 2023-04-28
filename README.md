@@ -1,70 +1,59 @@
-# Baseball Card Store Dapp
+# BitRibbon Store Dapp
 
 TL;DR:
 
-The Baseball Card Store Dapp sells baseball cards as NFT tokens in
-exchange for money.
+The BitRibbon Store Dapp is a modification of the Baseball Card Store Dapp.
 
 Install the
 [prerequisites](https://agoric.com/documentation/getting-started/before-using-agoric.html).
 
-### Execute every command below in a seperate terminal
-
-Install the sdk
+Install the sdk & checkout the community-dev branch
 ```sh
 cd agoric-sdk
-git checkout 65d3f14c8102993168d2568eed5e6acbcba0c48a
+git checkout community-dev
 yarn && yarn build
 ```
 
-Install the dapp
+Install the dapp & Initialize VM
 ```sh
-git clone https://github.com/Jorge-Lopes/agoric-assignment-6.git
-cd agoric-assignment-6
+# Terminal 1
+git clone https://github.com/bitribbon/dapp-card-store.git
+cd dapp-card-store
 agoric install
+agoric start --reset --verbose
 ```
 
-Start your local-chain
+Open the Agoric Wallet and REPL UI
 ```sh
-cd agoric-sdk/packages/cosmic-swingset
-make scenario2-setup && make scenario2-run-chain
-```
-
-Start `ag-solo`
-```sh
-cd agoric-sdk/packages/cosmic-swingset
-make scenario2-run-client
-```
-
-Open your wallet UI
-```sh
-cd agoric-sdk/packages/cosmic-swingset/t1
+# Terminal 2
+cd dapp-card-store
 agoric open --repl
 ```
 
-Deploy the contract
+Deploy the Contract and API
 ```sh
-cd agoric-assignment-6
-agoric deploy contract/deploy.js api/deploy.js
+# Terminal 2
+agoric deploy ./contract/deploy.js
+agoric deploy ./api/deploy.js
 ```
 
-Start UI, 
+Start the Dapp UI
 ```sh
-# Navigate to the `ui` directory and start a local server
-cd agoric-assignment-6/ui && yarn start
+# Terminal 3
+cd dapp-card-store
+cd ui && yarn start
 ```
+
 
 ## Using the Dapp
 
 1. A window for your wallet should open.
-4. Under "Dapps" in the wallet, enable the CardStore Dapp.
-5. Now you should be able to click on a card to make an offer to buy
+2. Under "Dapps" in the wallet, enable the CardStore Dapp.
+3. A compilation error may show up on the Dapp store. Close it and refresh the page.
+4. Now you should be able to click on a card to make an offer to buy
    it.
-6. Approve the offer in your wallet
-7. View the card in your wallet.
+5. Approve the offer in your wallet
+6. View the card in your wallet.
 
-![Card Store](./readme-assets/card-store.png)
-
-To learn more about how to build Agoric Dapps, please see the [Dapp Guide](https://agoric.com/documentation/dapps/).
 
 See the [Dapp Deployment Guide](https://github.com/Agoric/agoric-sdk/wiki/Dapp-Deployment-Guide) for how to deploy this Dapp on a public website, such as https://cardstore.testnet.agoric.com/
